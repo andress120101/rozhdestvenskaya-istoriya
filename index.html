@@ -52,7 +52,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero{position:relative;padding:112px 0 64px;overflow:hidden;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;
   background:radial-gradient(60% 70% at 78% 40%,rgba(253,208,91,.16),transparent 70%),radial-gradient(50% 60% at 10% 100%,rgba(120,40,30,.35),transparent 70%),var(--ink)}
-.hero-bg{position:absolute;inset:0;z-index:-1;background:center/cover no-repeat;opacity:.18;filter:grayscale(.3)}
+.hero-bg{position:absolute;inset:0;z-index:-1;background:center/cover no-repeat;opacity:0;filter:grayscale(.55) contrast(1.1);mix-blend-mode:luminosity;transition:opacity 1s}
 #snow{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);grid-template-areas:"head head" "info video";gap:40px 56px;align-items:center}
 @media(max-width:1180px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:36px 40px}}
@@ -99,8 +99,14 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.6vw,46px);l
 .about .lead b{color:var(--yellow);font-weight:600}
 .about p+p{margin-top:16px}
 .about .txt{color:var(--muted);font-size:18px}
-.cast{margin-top:36px;display:flex;flex-wrap:wrap;border-top:1px solid var(--line)}
-.cast div{flex:1 1 30%;padding:20px 20px 4px 0}
+.about-side{border-radius:var(--r-lg);overflow:hidden;background:var(--ink-3);margin-top:6px}
+.about-side img{width:100%;aspect-ratio:3/2;object-fit:cover}
+@media(max-width:860px){.about-side{margin-top:18px}}
+
+.about-photo{margin-top:28px;border-radius:var(--r-lg);overflow:hidden;background:var(--ink-3)}
+.about-photo img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.cast{margin-top:28px;display:flex;flex-wrap:wrap;border-top:1px solid var(--line)}
+.cast div{flex:1 1 40%;padding:20px 20px 4px 0}
 .cast b{font-family:var(--display);font-weight:700;font-size:40px;line-height:1;color:var(--text)}
 .cast span{display:block;color:var(--muted);font-size:15px;margin-top:6px}
 @media(max-width:860px){.about{grid-template-columns:1fr;gap:26px}.cast b{font-size:30px}}
@@ -250,14 +256,19 @@ footer .credit a{text-decoration:underline}
 <main>
   <section id="about" class="sec">
     <div class="wrap about">
-      <h2>О концерте</h2>
       <div>
-        <p class="lead">Рождественская история, рассказанная музыкой: <b>Бах, Гендель, Корелли, Чайковский</b> и гимны, которые знают все.</p>
-        <p class="txt" style="margin-top:20px">Вечер ведёт слушателя от тихого ожидания к ликующему «Аллилуйя». Приходите всей семьёй и приводите друзей: концерт бесплатный и открыт для всех.</p>
-        <div class="cast">
-          <div><b>Оркестр</b><span>струнные, духовые, фортепиано</span></div>
-          <div><b>Хор</b><span>гимны и фрагменты ораторий</span></div>
-          <div><b>Солисты</b><span>вокал и инструменты</span></div>
+        <h2>О концерте</h2>
+        <figure class="about-side"><img src="orchestra-3.jpg" alt="Оркестр концерта «Рождественская история»" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+      </div>
+      <div>
+        <p class="lead">Рождественская история, рассказанная словом и музыкой: от древнего обещания до <b>ночи в Вифлееме</b>.</p>
+        <p class="txt" style="margin-top:20px">Ведущий читает историю Рождества сцена за сценой, а между ними звучат музыкальные номера: оркестр, сводный и детский хоры, солисты и музыкальная группа. Вечер идёт от тихого ожидания к ликующему «Радуйся, мир!».</p>
+        <p class="txt">Концерт бесплатный и открыт для всех — приходите всей семьёй и приводите друзей.</p>
+                <div class="cast">
+          <div><b>Оркестр</b><span>струнные, духовые, фортепиано, гитара</span></div>
+          <div><b>Сводный хор</b><span>хоралы и рождественские гимны</span></div>
+          <div><b>Детский хор</b><span>три номера программы</span></div>
+          <div><b>Солисты и группа</b><span>вокал, скрипка, гитара</span></div>
         </div>
       </div>
     </div>
@@ -265,25 +276,25 @@ footer .credit a{text-decoration:underline}
 
   <section id="program" class="sec program">
     <div class="wrap">
-      <div class="prog-head"><h2>Программа</h2><p>Около 1,5 часа с антрактом · программа может уточняться</p></div>
+      <div class="prog-head"><h2>Программа</h2><p>Музыкальные номера звучат между сценами рождественской истории</p></div>
       <div class="parts">
         <div class="part">
-          <h3>Первое отделение</h3>
-          <div class="track"><i>01</i><div><b>Рождественская оратория, вступительный хор</b><small>И. С. Бах</small></div><time>8′</time></div>
-          <div class="track"><i>02</i><div><b>Concerto grosso № 8 «Рождественский»</b><small>А. Корелли</small></div><time>14′</time></div>
-          <div class="track"><i>03</i><div><b>Ave Maria</b><small>Ф. Шуберт</small></div><time>5′</time></div>
-          <div class="track"><i>04</i><div><b>Пасторальная симфония из «Мессии»</b><small>Г. Ф. Гендель</small></div><time>4′</time></div>
-          <div class="track"><i>05</i><div><b>Иисус, моя радость</b><small>И. С. Бах</small></div><time>4′</time></div>
+          <div class="track"><i>01</i><div><b>«In the Bleak Midwinter»</b><small>Оркестр · фрагмент звучит дважды: в прологе и после сцены об Иосифе</small></div></div>
+          <div class="track"><i>02</i><div><b>«В звёздную ночь Христос рождён»</b><small>Хор, пиццикато струнных</small></div></div>
+          <div class="track"><i>03</i><div><b>«Я буду петь»</b><small>Женский голос и хорал</small></div></div>
+          <div class="track"><i>04</i><div><b>«Шли Иосиф с Марией»</b><small>Гитара, пиццикато струнных, фортепиано, хорал · Артём</small></div></div>
+          <div class="track"><i>05</i><div><b>«Спустилась ночь на Вифлеем»</b><small>Детский хор с солистом</small></div></div>
+          <div class="track"><i>06</i><div><b>«О Рождестве благую весть»</b><small>Сводный хор</small></div></div>
+          <div class="track"><i>07</i><div><b>«Тихая ночь»</b><small>Хор · солистка Эмилия</small></div></div>
         </div>
         <div class="part">
-          <h3>Второе отделение</h3>
-          <div class="track"><i>06</i><div><b>Па-де-де из балета «Щелкунчик»</b><small>П. И. Чайковский</small></div><time>5′</time></div>
-          <div class="track"><i>07</i><div><b>Святая ночь</b><small>А. Адан</small></div><time>5′</time></div>
-          <div class="track"><i>08</i><div><b>Тихая ночь</b><small>Ф. Грубер</small></div><time>4′</time></div>
-          <div class="track"><i>09</i><div><b>Радуйся, мир!</b><small>Г. Ф. Гендель — Л. Мейсон</small></div><time>3′</time></div>
-          <div class="track"><i>10</i><div><b>«Аллилуйя» из оратории «Мессия»</b><small>Г. Ф. Гендель</small></div><time>4′</time></div>
+          <div class="track"><i>08</i><div><b>«Радость Рождества»</b><small>Группа и скрипка</small></div></div>
+          <div class="track"><i>09</i><div><b>«Ныне все верные в мире ликуют»</b><small>Детский хор</small></div></div>
+          <div class="track"><i>10</i><div><b>«О, Дитя с Небес»</b><small>Хор с солисткой</small></div></div>
+          <div class="track"><i>11</i><div><b>«Я иду за звездой Вифлеемскою»</b><small>Группа</small></div></div>
+          <div class="track"><i>12</i><div><b>«Радость в небесах, мир в людских сердцах»</b><small>Детский хор</small></div></div>
+          <div class="track"><i>13</i><div><b>«Радуйся, мир!»</b><small>Хор с оркестром · финал</small></div></div>
         </div>
-        <div class="break">Между отделениями антракт 15 минут</div>
       </div>
       <details class="rules">
         <summary>Правила посещения</summary>
@@ -292,7 +303,7 @@ footer .credit a{text-decoration:underline}
           <li>Верхнюю одежду оставляйте в гардеробе.</li>
           <li>Во время музыки выключите звук телефона и не снимайте со вспышкой.</li>
           <li>Дети до 14 лет — со взрослыми.</li>
-          <li>Опоздали — заходите в зал в паузе между произведениями.</li>
+          <li>Опоздали — заходите в зал в паузе между номерами.</li>
         </ul>
       </details>
     </div>
@@ -360,14 +371,14 @@ footer .credit a{text-decoration:underline}
 // ===== Настройки =====
 const EVENT={title:'Концерт «Рождественская история»',start:'2027-01-07T18:00:00+07:00',durationMin:120,
   place:'ДК «Прогресс», Красный проспект, 167, Новосибирск'};
-const PHOTOS=["DSC_7716.jpg","DSC_7699.jpg","DSC_7702.jpg","DSC_7706.jpg","DSC_7710.jpg","DSC_7711.jpg","DSC_7714.jpg","DSC_7717.jpg","DSC_7720.jpg"].map(f=>'photos/'+f);
+const PHOTOS=["orchestra-1.jpg","orchestra-3.jpg","orchestra-2.jpg"].map(f=>f);
 // =====================
 
 const $=id=>document.getElementById(id);
 const url=location.href.startsWith('http')?location.href:'';
 const invite='Приглашаю на бесплатный концерт «Рождественская история»: 7 января 2027, 18:00, ДК «Прогресс» (Красный проспект, 167).';
 
-const probe=new Image();probe.onload=()=>{$('heroBg').style.backgroundImage=`url(${PHOTOS[0]})`};probe.src=PHOTOS[0];
+const probe=new Image();probe.onload=()=>{$('heroBg').style.backgroundImage=`url(${PHOTOS[0]})`;$('heroBg').style.opacity=.1};probe.src=PHOTOS[0];
 
 // Галерея
 const gal=$('gal');
