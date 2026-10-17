@@ -466,7 +466,7 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 
 // Окно регистрации
-(()=>{const reg=$('reg'),box=$('yaform');let loaded=false;const H0=700,CUT=130;
+(()=>{const reg=$('reg'),box=$('yaform');let loaded=false;const H0=700;
   const build=()=>{
     const f=document.createElement('iframe');
     f.src='https://forms.yandex.ru/u/6ad3320d852af384d6c7a1a2/?iframe=1';
@@ -476,7 +476,8 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
     box.appendChild(f);
     const sc=document.createElement('script');sc.src='https://forms.yandex.ru/_static/embed.js';document.body.appendChild(sc);
     // прячем служебный футер Яндекс Форм, когда скрипт подогнал высоту
-    const fit=()=>{const h=f.offsetHeight;box.style.height=(h&&Math.abs(h-H0)>2)?Math.max(340,h-CUT)+'px':H0+'px'};
+    const fit=()=>{const h=f.offsetHeight;if(!h||Math.abs(h-H0)<2){box.style.height=H0+'px';return}
+      box.style.height=Math.max(120,h-(h>420?58:84))+'px';box.style.minHeight='0'};
     new MutationObserver(fit).observe(f,{attributes:true,attributeFilter:['style','height']});
     [400,1200,2500,5000].forEach(t=>setTimeout(fit,t));
   };
