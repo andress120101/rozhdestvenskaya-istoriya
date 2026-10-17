@@ -185,29 +185,14 @@ footer{border-top:1px solid var(--line);padding:30px 0}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 
 
-/* Своя форма регистрации */
-.reg-body{padding:30px 36px 36px}
-.f-row{margin-bottom:22px}
-.f-row label.lbl{display:block;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
-.f-row input[type=text],.f-row input[type=tel],.f-row input[type=number]{width:100%;background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:var(--r-md);padding:16px 18px;color:var(--text);font:500 18px var(--body);transition:border-color .2s,background .2s}
-.f-row input::placeholder{color:rgba(246,241,232,.35)}
-.f-row input:focus{outline:none;border-color:var(--yellow);background:rgba(255,255,255,.07)}
-.f-row input.bad{border-color:#e5484d}
-.who{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.who button{padding:16px 14px;border-radius:var(--r-md);background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1.5px var(--line);font:600 17px var(--body);color:var(--text);text-align:left;transition:.2s}
-.who button:hover{box-shadow:inset 0 0 0 1.5px rgba(253,208,91,.6)}
-.who button.sel{background:var(--yellow);color:#16110a;box-shadow:inset 0 0 0 1.5px var(--yellow)}
-.f-hint{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}
-.f-send{width:100%;margin-top:6px;font-size:20px;padding:18px}
-.f-send[disabled]{opacity:.6;cursor:default}
-.f-err{color:#ff8a8d;font-size:14px;margin-top:12px;min-height:18px}
-.reg-ok{display:none;text-align:center;padding:50px 30px}
-.reg-ok.on{display:block}
-.reg-ok .tick{width:72px;height:72px;margin:0 auto 22px;border-radius:50%;background:var(--yellow);display:grid;place-items:center}
-.reg-ok .tick svg{width:34px;height:34px;stroke:#16110a;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.reg-ok h4{font-family:var(--display);font-weight:700;font-size:28px;text-transform:uppercase;margin-bottom:12px}
-.reg-ok p{color:var(--muted);margin-bottom:26px}
-@media(max-width:700px){.reg-body{padding:22px 18px 28px}.who{grid-template-columns:1fr}}
+/* Форма регистрации */
+.yaform{position:relative;overflow:hidden;border-radius:var(--r-md);min-height:430px;background:var(--ink-2)}
+.yaform iframe{display:block;width:100%;border:0}
+.yaload{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:15px;letter-spacing:.02em}
+.yaload span{display:inline-flex;align-items:center;gap:12px}
+.yaload i{width:16px;height:16px;border-radius:50%;border:2px solid rgba(253,208,91,.3);border-top-color:var(--yellow);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.f-hint{font-size:13px;color:var(--muted);margin:14px 4px 0;line-height:1.45}
 
 /* Окно регистрации */
 .reg{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,6,5,.85);backdrop-filter:blur(4px)}
@@ -218,11 +203,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
 .reg-head h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.2vw,34px);text-transform:uppercase;line-height:1.05}
 .reg-head p{margin-top:10px;color:var(--muted);font-size:16px}
 .reg-head p b{color:var(--yellow);font-weight:600}
-.reg-body{padding:10px 20px 24px;min-height:420px}
-.reg-body iframe{width:100%;border:0;display:block}
+.reg-body{padding:18px 22px 26px}
+
 .reg-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(255,236,200,.1);font-size:24px;line-height:1;color:var(--text);transition:background .2s}
 .reg-close:hover{background:var(--yellow);color:#16110a}
-@media(max-width:700px){.reg{padding:0}.reg-card{max-width:none;max-height:100vh;height:100vh;border-radius:0}.reg-head{padding:26px 20px 16px}}
+@media(max-width:700px){.reg{padding:0}.reg-card{max-width:none;max-height:100vh;height:100vh;border-radius:0}.reg-head{padding:26px 20px 16px}.reg-body{padding:12px 12px 24px}}
 
 /* Музыка */
 .music{position:fixed;left:20px;bottom:20px;z-index:70;display:flex;align-items:center;gap:14px;padding:10px 20px 10px 10px;border-radius:50px;background:rgba(23,19,17,.94);backdrop-filter:blur(8px);box-shadow:0 0 0 1px var(--line),0 14px 34px -14px rgba(0,0,0,.9);transition:box-shadow .25s,transform .2s;max-width:calc(100vw - 40px);text-align:left}
@@ -402,40 +387,8 @@ footer .credit a{text-decoration:underline}
       <p>7 января, 18:00, ДК «Прогресс», Красный проспект, 167. <b>Вход свободный</b> — регистрация нужна, чтобы мы знали, сколько вас ждать.</p>
     </div>
     <div class="reg-body" id="regBody">
-      <form id="regForm" action="https://forms.yandex.ru/u/6ad3320d852af384d6c7a1a2/" method="get" target="regSink" novalidate>
-        <div class="f-row">
-          <label class="lbl" for="fName">Ваше имя</label>
-          <input id="fName" name="answer_short_text_9008991480567230" type="text" placeholder="Как к вам обращаться" autocomplete="name" required>
-        </div>
-        <div class="f-row">
-          <label class="lbl" for="fTel">Телефон</label>
-          <input id="fTel" name="answer_phone_9008991480639612" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
-        </div>
-        <div class="f-row">
-          <span class="lbl">С кем придёте</span>
-          <div class="who" id="who">
-            <button type="button" data-v="9008991480700818">Приду один</button>
-            <button type="button" data-v="1792226007859">Вдвоём</button>
-            <button type="button" data-v="1792226055160">Семьёй с детьми</button>
-            <button type="button" data-v="1792226055360">Компанией</button>
-          </div>
-          <input type="hidden" name="answer_one_answer_9008991480700808" id="fWho">
-        </div>
-        <div class="f-row" id="cntRow" style="display:none">
-          <label class="lbl" for="fCnt">Сколько вас будет</label>
-          <input id="fCnt" name="answer_integer_9008991480836460" type="number" min="2" max="50" placeholder="Например, 5">
-        </div>
-        <button class="btn f-send" type="submit" id="fSend">Записаться</button>
-        <div class="f-err" id="fErr"></div>
-        <p class="f-hint">Нажимая «Записаться», вы соглашаетесь на обработку указанных данных для организации концерта. Мы используем их только чтобы знать, сколько гостей ждать.</p>
-      </form>
-      <iframe name="regSink" id="regSink" style="display:none" title="Отправка формы"></iframe>
-      <div class="reg-ok" id="regOk">
-        <div class="tick"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg></div>
-        <h4>Спасибо, ждём вас!</h4>
-        <p>7 января в 18:00, ДК «Прогресс». Мы записали вас в список гостей.</p>
-        <button class="btn ghost" onclick="downloadICS()">Добавить в календарь</button>
-      </div>
+      <div class="yaform" id="yaform"><div class="yaload"><span><i></i>Загружаем форму…</span></div></div>
+      <p class="f-hint">Отправляя форму, вы соглашаетесь на обработку указанных данных для организации концерта. Мы используем их только чтобы знать, сколько гостей ждать.</p>
     </div>
   </div>
 </div>
@@ -512,36 +465,22 @@ const onScroll=()=>{hdr.classList.toggle('solid',scrollY>20);let a=null;
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 
-// Своя форма регистрации
-(()=>{const f=$('regForm'),who=$('who'),hid=$('fWho'),tel=$('fTel'),name=$('fName'),cnt=$('cntRow'),err=$('fErr'),ok=$('regOk'),send=$('fSend');
-  // выбор варианта
-  who.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-    who.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));
-    b.classList.add('sel');hid.value=b.dataset.v;
-    const many=b.textContent==='Компанией'||b.textContent==='Семьёй с детьми';
-    cnt.style.display=many?'block':'none';err.textContent=''});
-  // маска телефона
-  const mask=v=>{let d=v.replace(/\D/g,'');if(d.startsWith('8'))d='7'+d.slice(1);if(!d.startsWith('7'))d='7'+d;d=d.slice(0,11);
-    let r='+7';if(d.length>1)r+=' ('+d.slice(1,4);if(d.length>=5)r+=') '+d.slice(4,7);if(d.length>=8)r+='-'+d.slice(7,9);if(d.length>=10)r+='-'+d.slice(9,11);return r};
-  tel.addEventListener('input',()=>{tel.value=mask(tel.value);tel.classList.remove('bad')});
-  tel.addEventListener('focus',()=>{if(!tel.value)tel.value='+7 ('});
-  name.addEventListener('input',()=>name.classList.remove('bad'));
-  f.addEventListener('submit',e=>{
-    const digits=tel.value.replace(/\D/g,'');
-    if(!name.value.trim()){e.preventDefault();name.classList.add('bad');name.focus();err.textContent='Напишите, как вас зовут';return}
-    if(digits.length!==11){e.preventDefault();tel.classList.add('bad');tel.focus();err.textContent='Проверьте номер телефона';return}
-    if(!hid.value){e.preventDefault();err.textContent='Выберите, с кем придёте';return}
-    err.textContent='';send.disabled=true;send.textContent='Отправляем…';
-    setTimeout(()=>{f.style.display='none';ok.classList.add('on')},900)});
-})();
-
 // Окно регистрации
-(()=>{const reg=$('reg'),body=$('regBody');let loaded=false;
-  const open=()=>{if(!loaded){loaded=true;
-      const sc=document.createElement('script');sc.src='https://forms.yandex.ru/_static/embed.js';document.body.appendChild(sc);
-      const f=document.createElement('iframe');f.src='https://forms.yandex.ru/u/6ad3320d852af384d6c7a1a2?iframe=1';
-      f.name='ya-form-6ad3320d852af384d6c7a1a2';f.setAttribute('frameborder','0');f.style.height='620px';f.title='Форма регистрации';
-      body.appendChild(f)}
+(()=>{const reg=$('reg'),box=$('yaform');let loaded=false;const H0=700,CUT=130;
+  const build=()=>{
+    const f=document.createElement('iframe');
+    f.src='https://forms.yandex.ru/u/6ad3320d852af384d6c7a1a2/?iframe=1';
+    f.name='ya-form-6ad3320d852af384d6c7a1a2';
+    f.title='Форма регистрации';f.setAttribute('frameborder','0');f.style.height=H0+'px';
+    f.addEventListener('load',()=>{const l=box.querySelector('.yaload');if(l)l.remove()});
+    box.appendChild(f);
+    const sc=document.createElement('script');sc.src='https://forms.yandex.ru/_static/embed.js';document.body.appendChild(sc);
+    // прячем служебный футер Яндекс Форм, когда скрипт подогнал высоту
+    const fit=()=>{const h=f.offsetHeight;box.style.height=(h&&Math.abs(h-H0)>2)?Math.max(340,h-CUT)+'px':H0+'px'};
+    new MutationObserver(fit).observe(f,{attributes:true,attributeFilter:['style','height']});
+    [400,1200,2500,5000].forEach(t=>setTimeout(fit,t));
+  };
+  const open=()=>{if(!loaded){loaded=true;build()}
     reg.classList.add('open');document.body.style.overflow='hidden';$('regClose').focus()};
   const close=()=>{reg.classList.remove('open');document.body.style.overflow=''};
   document.querySelectorAll('[data-reg]').forEach(b=>b.addEventListener('click',open));
