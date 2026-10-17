@@ -71,9 +71,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .free{margin-top:18px;font-weight:600;font-size:16px;color:var(--muted)}
 .free b{color:var(--text)}
 .video{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 40px 80px -40px rgba(0,0,0,.9),0 0 0 1px var(--line)}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-cap{margin-top:14px;font-size:15px;color:var(--muted);display:flex;gap:10px;align-items:center;white-space:nowrap}
-.video-cap::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 4px rgba(229,72,77,.2)}
+.video iframe,.video img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.video-cap{margin-top:14px;font-size:15px;color:var(--muted);white-space:nowrap}
 @media(max-width:960px){.hero{padding:84px 0 48px}.hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "info" "video";gap:24px}.video-cap{white-space:normal}.facts-line{margin:22px 0 24px;gap:16px}.facts-line .where b{font-size:18px}.facts-line .where{font-size:15px}}
 @media(max-width:700px){.hero{padding:76px 0 40px}.kicker{font-size:15px;margin-bottom:10px}.actions .btn{flex:1;padding:16px 12px;font-size:17px}}
 
@@ -244,9 +243,9 @@ footer .credit a{text-decoration:underline}
     </div>
     <div class="h-video rise d4">
       <div class="video">
-        <iframe src="https://vkvideo.ru/video_ext.php?oid=-221406955&id=456239218&hd=2" title="Видео с концерта" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock" allowfullscreen loading="lazy"></iframe>
+        <img src="poster.jpg" alt="Ансамбль «Киннор» с участием хора" loading="lazy">
       </div>
-      <p class="video-cap">Видео с нашего прошлого рождественского концерта</p>
+      <p class="video-cap">Ансамбль «Киннор» с участием хора</p>
     </div>
   </div>
 </div>
@@ -304,8 +303,6 @@ footer .credit a{text-decoration:underline}
           <li>Билеты не нужны. Приходите за 20–30 минут до начала, чтобы спокойно занять место.</li>
           <li>Верхнюю одежду оставляйте в гардеробе.</li>
           <li>Во время музыки выключите звук телефона и не снимайте со вспышкой.</li>
-          <li>Дети до 14 лет — со взрослыми.</li>
-          <li>Опоздали — заходите в зал в паузе между номерами.</li>
         </ul>
       </details>
     </div>
