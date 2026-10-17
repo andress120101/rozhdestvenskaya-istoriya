@@ -185,6 +185,30 @@ footer{border-top:1px solid var(--line);padding:30px 0}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 
 
+/* Своя форма регистрации */
+.reg-body{padding:30px 36px 36px}
+.f-row{margin-bottom:22px}
+.f-row label.lbl{display:block;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+.f-row input[type=text],.f-row input[type=tel],.f-row input[type=number]{width:100%;background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:var(--r-md);padding:16px 18px;color:var(--text);font:500 18px var(--body);transition:border-color .2s,background .2s}
+.f-row input::placeholder{color:rgba(246,241,232,.35)}
+.f-row input:focus{outline:none;border-color:var(--yellow);background:rgba(255,255,255,.07)}
+.f-row input.bad{border-color:#e5484d}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.who button{padding:16px 14px;border-radius:var(--r-md);background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1.5px var(--line);font:600 17px var(--body);color:var(--text);text-align:left;transition:.2s}
+.who button:hover{box-shadow:inset 0 0 0 1.5px rgba(253,208,91,.6)}
+.who button.sel{background:var(--yellow);color:#16110a;box-shadow:inset 0 0 0 1.5px var(--yellow)}
+.f-hint{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}
+.f-send{width:100%;margin-top:6px;font-size:20px;padding:18px}
+.f-send[disabled]{opacity:.6;cursor:default}
+.f-err{color:#ff8a8d;font-size:14px;margin-top:12px;min-height:18px}
+.reg-ok{display:none;text-align:center;padding:50px 30px}
+.reg-ok.on{display:block}
+.reg-ok .tick{width:72px;height:72px;margin:0 auto 22px;border-radius:50%;background:var(--yellow);display:grid;place-items:center}
+.reg-ok .tick svg{width:34px;height:34px;stroke:#16110a;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.reg-ok h4{font-family:var(--display);font-weight:700;font-size:28px;text-transform:uppercase;margin-bottom:12px}
+.reg-ok p{color:var(--muted);margin-bottom:26px}
+@media(max-width:700px){.reg-body{padding:22px 18px 28px}.who{grid-template-columns:1fr}}
+
 /* Окно регистрации */
 .reg{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,6,5,.85);backdrop-filter:blur(4px)}
 .reg.open{display:flex}
@@ -377,7 +401,42 @@ footer .credit a{text-decoration:underline}
       <h3>Буду на концерте</h3>
       <p>7 января, 18:00, ДК «Прогресс», Красный проспект, 167. <b>Вход свободный</b> — регистрация нужна, чтобы мы знали, сколько вас ждать.</p>
     </div>
-    <div class="reg-body" id="regBody"></div>
+    <div class="reg-body" id="regBody">
+      <form id="regForm" action="https://forms.yandex.ru/u/6ad3320d852af384d6c7a1a2/" method="get" target="regSink" novalidate>
+        <div class="f-row">
+          <label class="lbl" for="fName">Ваше имя</label>
+          <input id="fName" name="answer_short_text_9008991480567230" type="text" placeholder="Как к вам обращаться" autocomplete="name" required>
+        </div>
+        <div class="f-row">
+          <label class="lbl" for="fTel">Телефон</label>
+          <input id="fTel" name="answer_phone_9008991480639612" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+        </div>
+        <div class="f-row">
+          <span class="lbl">С кем придёте</span>
+          <div class="who" id="who">
+            <button type="button" data-v="9008991480700818">Приду один</button>
+            <button type="button" data-v="1792226007859">Вдвоём</button>
+            <button type="button" data-v="1792226055160">Семьёй с детьми</button>
+            <button type="button" data-v="1792226055360">Компанией</button>
+          </div>
+          <input type="hidden" name="answer_one_answer_9008991480700808" id="fWho">
+        </div>
+        <div class="f-row" id="cntRow" style="display:none">
+          <label class="lbl" for="fCnt">Сколько вас будет</label>
+          <input id="fCnt" name="answer_integer_9008991480836460" type="number" min="2" max="50" placeholder="Например, 5">
+        </div>
+        <button class="btn f-send" type="submit" id="fSend">Записаться</button>
+        <div class="f-err" id="fErr"></div>
+        <p class="f-hint">Нажимая «Записаться», вы соглашаетесь на обработку указанных данных для организации концерта. Мы используем их только чтобы знать, сколько гостей ждать.</p>
+      </form>
+      <iframe name="regSink" id="regSink" style="display:none" title="Отправка формы"></iframe>
+      <div class="reg-ok" id="regOk">
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg></div>
+        <h4>Спасибо, ждём вас!</h4>
+        <p>7 января в 18:00, ДК «Прогресс». Мы записали вас в список гостей.</p>
+        <button class="btn ghost" onclick="downloadICS()">Добавить в календарь</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -452,6 +511,29 @@ const onScroll=()=>{hdr.classList.toggle('solid',scrollY>20);let a=null;
   tabs.forEach(l=>l.classList.toggle('act',l===a))};
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
+
+// Своя форма регистрации
+(()=>{const f=$('regForm'),who=$('who'),hid=$('fWho'),tel=$('fTel'),name=$('fName'),cnt=$('cntRow'),err=$('fErr'),ok=$('regOk'),send=$('fSend');
+  // выбор варианта
+  who.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    who.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');hid.value=b.dataset.v;
+    const many=b.textContent==='Компанией'||b.textContent==='Семьёй с детьми';
+    cnt.style.display=many?'block':'none';err.textContent=''});
+  // маска телефона
+  const mask=v=>{let d=v.replace(/\D/g,'');if(d.startsWith('8'))d='7'+d.slice(1);if(!d.startsWith('7'))d='7'+d;d=d.slice(0,11);
+    let r='+7';if(d.length>1)r+=' ('+d.slice(1,4);if(d.length>=5)r+=') '+d.slice(4,7);if(d.length>=8)r+='-'+d.slice(7,9);if(d.length>=10)r+='-'+d.slice(9,11);return r};
+  tel.addEventListener('input',()=>{tel.value=mask(tel.value);tel.classList.remove('bad')});
+  tel.addEventListener('focus',()=>{if(!tel.value)tel.value='+7 ('});
+  name.addEventListener('input',()=>name.classList.remove('bad'));
+  f.addEventListener('submit',e=>{
+    const digits=tel.value.replace(/\D/g,'');
+    if(!name.value.trim()){e.preventDefault();name.classList.add('bad');name.focus();err.textContent='Напишите, как вас зовут';return}
+    if(digits.length!==11){e.preventDefault();tel.classList.add('bad');tel.focus();err.textContent='Проверьте номер телефона';return}
+    if(!hid.value){e.preventDefault();err.textContent='Выберите, с кем придёте';return}
+    err.textContent='';send.disabled=true;send.textContent='Отправляем…';
+    setTimeout(()=>{f.style.display='none';ok.classList.add('on')},900)});
+})();
 
 // Окно регистрации
 (()=>{const reg=$('reg'),body=$('regBody');let loaded=false;
