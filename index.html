@@ -355,18 +355,17 @@ footer .credit a{text-decoration:underline}
   </section>
 </main>
 
-<footer><div class="wrap"><span>«Рождественская история» · 7 января 2027 · ДК «Прогресс»</span><span>С Рождеством Христовым!</span><span class="credit">Музыка: «Тихая ночь» Ф. Грубера, инструментальная запись духового оркестра из общественного достояния, <a href="https://commons.wikimedia.org/wiki/File:Silent_Nights_-_Concert_Band_-_United_States_Air_Force_Band_of_the_Rockies.mp3" target="_blank" rel="noopener">Wikimedia Commons</a>.</span></div></footer>
+<footer><div class="wrap"><span>«Рождественская история» · 7 января 2027 · ДК «Прогресс»</span><span>С Рождеством Христовым!</span><span class="credit">Музыка: «Тихая ночь» (Ф. Грубер).</span></div></footer>
 
 <button class="music" id="music" aria-pressed="false" aria-label="Включить музыку: Тихая ночь">
   <span class="ico" aria-hidden="true">
     <svg class="play" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
     <svg class="pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
   </span>
-  <span class="t"><b>«Тихая ночь» · оркестр</b><span id="musicState">Включить музыку</span></span>
+  <span class="t"><b>«Тихая ночь»</b><span id="musicState">Включить музыку</span></span>
 </button>
 <audio id="bgm" loop preload="none">
-  <source src="music/silent-night.mp3" type="audio/mpeg">
-  <source src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Silent_Nights_-_Concert_Band_-_United_States_Air_Force_Band_of_the_Rockies.mp3" type="audio/mpeg">
+  <source src="silent-night.mp3" type="audio/mpeg">
 </audio>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото"><button class="x" aria-label="Закрыть">×</button><button class="p" aria-label="Предыдущее">‹</button><img id="lbImg" alt=""><button class="n" aria-label="Следующее">›</button><div class="c" id="lbC"></div></div>
